@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import ProjectTeaser1 from "@/assets/projects/circle-interview.png";
 import ProjectTeaser2 from "@/assets/projects/circle-origon-ui.png";
-import { ChevronLeftIcon, ChevronRightIcon } from "./Icons";
+import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "./Icons";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PROJECTS = [
@@ -30,50 +30,11 @@ const SLIDE_VARIANTS = {
   }),
 };
 
-const CURSOR_VARIANTS = {
-  hidden: {
-    opacity: 0,
-    scale: 0.6,
-    height: 10,
-    width: 10,
-    x: -5,
-    y: -5,
-  },
-  default: {
-    opacity: 0,
-    scale: 1,
-    height: 10,
-    width: 10,
-    x: -5,
-    y: -5,
-  },
-  active: {
-    opacity: 1,
-    scale: 1,
-    height: 40,
-    width: 40,
-    x: -20,
-    y: -20,
-  },
-  pressed: {
-    opacity: 1,
-    scale: 0.9,
-    height: 30,
-    width: 30,
-    x: -15,
-    y: -15,
-  },
-};
-
 export default function ProjectCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [cursorState, setCursorState] = useState("hidden");
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorIcon, setCursorIcon] = useState(null);
   const [isProjectDetailViewOpen, setIsProjectDetailViewOpen] = useState(false);
-  const containerRef = useRef(null);
 
   const changeSlide = useCallback(
     (direction) => {
@@ -97,19 +58,6 @@ export default function ProjectCarousel() {
     [changeSlide],
   );
 
-  const handleMouseMove = useCallback((e) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-    const { left, width } = containerRef.current.getBoundingClientRect();
-    setCursorIcon(e.clientX < left + width / 2 ? "left" : "right");
-  }, []);
-
-  const handleMouseEnter = useCallback(() => setCursorState("active"), []);
-  const handleMouseLeave = useCallback(() => setCursorState("hidden"), []);
-
-  const handleOpenProjectDetail = useCallback(() => {
-    setIsProjectDetailViewOpen(true);
-  }, []);
-
   const toggleProjectDetail = useCallback(() => {
     setIsProjectDetailViewOpen(!isProjectDetailViewOpen);
   }, [isProjectDetailViewOpen]);
@@ -123,25 +71,10 @@ export default function ProjectCarousel() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    container.addEventListener("mousemove", handleMouseMove);
-    container.addEventListener("mouseenter", handleMouseEnter);
-    container.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      container.removeEventListener("mousemove", handleMouseMove);
-      container.removeEventListener("mouseenter", handleMouseEnter);
-      container.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, [handleMouseMove, handleMouseEnter, handleMouseLeave]);
-
   return (
     <section className="sticky top-0 h-screen w-full p-3">
       <div className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card">
-        <div ref={containerRef} className="relative flex flex-1">
-          {/* Details view will show here on top of image as overlay */}
-
+        <div className="relative flex flex-1">
           <AnimatePresence>
             {isProjectDetailViewOpen && (
               <ProjectDetailView
@@ -175,13 +108,6 @@ export default function ProjectCarousel() {
               />
             </motion.div>
           </AnimatePresence>
-
-          <NavigationOverlay
-            onPrevious={() => changeSlide(-1)}
-            onNext={() => changeSlide(1)}
-            setCursorState={setCursorState}
-            setCursorIcon={setCursorIcon}
-          />
         </div>
 
         <ProjectInfo
@@ -192,75 +118,14 @@ export default function ProjectCarousel() {
           toggleProjectDetail={toggleProjectDetail}
         />
       </div>
-
-      <CustomCursor
-        cursorState={cursorState}
-        mousePosition={mousePosition}
-        cursorIcon={cursorIcon}
-      />
     </section>
   );
 }
 
-function NavigationOverlay({
-  onPrevious,
-  onNext,
-  setCursorState,
-  setCursorIcon,
-}) {
+function ProjectInfo({ project, onPrevious, onNext, isAnimating }) {
   return (
-    <div className="absolute inset-0 z-10 grid h-full w-full grid-cols-2">
-      <NavigationButton
-        onClick={onPrevious}
-        onMouseEnter={() => {
-          setCursorState("active");
-          setCursorIcon("left");
-        }}
-        onMouseLeave={() => {
-          setCursorState("default");
-          setCursorIcon(null);
-        }}
-      />
-      <NavigationButton
-        onClick={onNext}
-        onMouseEnter={() => {
-          setCursorState("active");
-          setCursorIcon("right");
-        }}
-        onMouseLeave={() => {
-          setCursorState("default");
-          setCursorIcon(null);
-        }}
-      />
-    </div>
-  );
-}
-
-function NavigationButton({ onClick, onMouseEnter, onMouseLeave }) {
-  const [isPressed, setIsPressed] = useState(false);
-
-  return (
-    <button
-      onClick={onClick}
-      className="h-full w-full cursor-none focus:outline-none"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onMouseDown={() => setIsPressed(true)}
-      onMouseUp={() => setIsPressed(false)}
-    />
-  );
-}
-
-function ProjectInfo({
-  project,
-  onPrevious,
-  onNext,
-  isAnimating,
-  toggleProjectDetail,
-}) {
-  return (
-    <div className="flex items-center justify-start gap-5 border-t border-white/10 px-10 py-4">
-      <div className="flex items-center gap-2.5">
+    <div className="flex items-center justify-start gap-5 border-t border-white/5 px-10 py-4">
+      <div className="flex items-center gap-5">
         <NavigationArrow
           onClick={onPrevious}
           direction="left"
@@ -271,14 +136,15 @@ function ProjectInfo({
           direction="right"
           disabled={isAnimating}
         />
+
+        <div className="h-5 w-px bg-white/10" />
+
+        <button className="grid h-7 w-7 place-items-center rounded-full bg-white/10 outline-none transition-all duration-200 hover:bg-accent-600 hover:text-black">
+          <PlusIcon />
+        </button>
       </div>
+
       <p className="flex-1">{project.title}</p>
-      <button
-        onClick={toggleProjectDetail}
-        className="w-fit rounded-full bg-white/10 px-3 py-1 text-sm font-semibold uppercase tracking-wider text-white/90 transition duration-200 hover:bg-accent-600 hover:text-white"
-      >
-        Learn More
-      </button>
     </div>
   );
 }
@@ -290,39 +156,11 @@ function NavigationArrow({ onClick, direction, disabled }) {
       onClick={onClick}
       disabled={disabled}
       className={`grid h-7 w-7 place-items-center rounded-full bg-white/10 transition duration-200 ${
-        disabled ? "cursor-not-allowed opacity-50" : "hover:bg-white/20"
+        disabled ? "opacity-50" : "hover:bg-white/20"
       }`}
     >
       <Icon />
     </button>
-  );
-}
-
-function CustomCursor({ cursorState, mousePosition, cursorIcon }) {
-  return (
-    <AnimatePresence>
-      {cursorState !== "hidden" && (
-        <motion.div
-          className="pointer-events-none fixed left-0 top-0 z-50 flex items-center justify-center rounded-full bg-gray-600 text-white backdrop-blur-lg"
-          variants={CURSOR_VARIANTS}
-          initial="hidden"
-          animate={cursorState}
-          exit="hidden"
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 30,
-            mass: 0.5,
-          }}
-          style={{
-            translateX: mousePosition.x,
-            translateY: mousePosition.y,
-          }}
-        >
-          {cursorIcon === "left" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        </motion.div>
-      )}
-    </AnimatePresence>
   );
 }
 
