@@ -9,7 +9,7 @@ import Footer from "./Footer";
 
 export default function Sidebar() {
   return (
-    <aside className="px-6 py-10">
+    <aside className="px-6 py-10 pb-6">
       <div className="mx-auto flex w-full max-w-[384px] flex-col gap-[120px]">
         <Lead />
         <Services />
