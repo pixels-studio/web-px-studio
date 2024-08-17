@@ -31,8 +31,17 @@ const SLIDE_VARIANTS = {
 };
 
 const CURSOR_VARIANTS = {
+  hidden: {
+    opacity: 0,
+    scale: 0.6,
+    height: 10,
+    width: 10,
+    x: -5,
+    y: -5,
+  },
   default: {
     opacity: 0,
+    scale: 1,
     height: 10,
     width: 10,
     x: -5,
@@ -40,6 +49,7 @@ const CURSOR_VARIANTS = {
   },
   active: {
     opacity: 1,
+    scale: 1,
     height: 40,
     width: 40,
     x: -20,
@@ -47,6 +57,7 @@ const CURSOR_VARIANTS = {
   },
   pressed: {
     opacity: 1,
+    scale: 0.9,
     height: 30,
     width: 30,
     x: -15,
@@ -58,7 +69,7 @@ export default function ProjectCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [cursorState, setCursorState] = useState("default");
+  const [cursorState, setCursorState] = useState("hidden");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorIcon, setCursorIcon] = useState(null);
   const containerRef = useRef(null);
@@ -92,10 +103,7 @@ export default function ProjectCarousel() {
   }, []);
 
   const handleMouseEnter = useCallback(() => setCursorState("active"), []);
-  const handleMouseLeave = useCallback(() => {
-    setCursorState("default");
-    setCursorIcon(null);
-  }, []);
+  const handleMouseLeave = useCallback(() => setCursorState("hidden"), []);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -258,22 +266,28 @@ function NavigationArrow({ onClick, direction, disabled }) {
 
 function CustomCursor({ cursorState, mousePosition, cursorIcon }) {
   return (
-    <motion.div
-      className="pointer-events-none fixed left-0 top-0 z-50 flex items-center justify-center rounded-full bg-gray-600 text-white backdrop-blur-lg"
-      variants={CURSOR_VARIANTS}
-      initial="default"
-      animate={cursorState}
-      transition={{
-        type: "tween",
-        ease: "linear",
-        duration: cursorState === "pressed" ? 0.4 : 0,
-      }}
-      style={{
-        translateX: mousePosition.x,
-        translateY: mousePosition.y,
-      }}
-    >
-      {cursorIcon === "left" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-    </motion.div>
+    <AnimatePresence>
+      {cursorState !== "hidden" && (
+        <motion.div
+          className="pointer-events-none fixed left-0 top-0 z-50 flex items-center justify-center rounded-full bg-gray-600 text-white backdrop-blur-lg"
+          variants={CURSOR_VARIANTS}
+          initial="hidden"
+          animate={cursorState}
+          exit="hidden"
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+            mass: 0.5,
+          }}
+          style={{
+            translateX: mousePosition.x,
+            translateY: mousePosition.y,
+          }}
+        >
+          {cursorIcon === "left" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
