@@ -80,7 +80,7 @@ export default function Contact() {
         Elsewhere
       </h2>
 
-      <ul className="flex flex-col gap-3" role="list">
+      <ul className="grid grid-cols-2 gap-3" role="list">
         {SOCIALS.map((social) => {
           return (
             <li key={social.id}>
@@ -90,9 +90,6 @@ export default function Contact() {
               >
                 <div>{social.icon}</div>
                 <div className="flex-1">{social.title}</div>
-                <div>
-                  <ChevronRightIcon />
-                </div>
               </a>
             </li>
           );

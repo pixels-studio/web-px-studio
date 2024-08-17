@@ -86,6 +86,7 @@ export default function Testimonials() {
                 <Image
                   className="h-6 w-6 rounded-full"
                   src={testimonial.person.image}
+                  alt={testimonial.person.name}
                 />
 
                 <p>

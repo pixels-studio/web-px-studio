@@ -72,6 +72,7 @@ export default function ProjectCarousel() {
   const [cursorState, setCursorState] = useState("hidden");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorIcon, setCursorIcon] = useState(null);
+  const [isProjectDetailViewOpen, setIsProjectDetailViewOpen] = useState(false);
   const containerRef = useRef(null);
 
   const changeSlide = useCallback(
@@ -105,6 +106,18 @@ export default function ProjectCarousel() {
   const handleMouseEnter = useCallback(() => setCursorState("active"), []);
   const handleMouseLeave = useCallback(() => setCursorState("hidden"), []);
 
+  const handleOpenProjectDetail = useCallback(() => {
+    setIsProjectDetailViewOpen(true);
+  }, []);
+
+  const toggleProjectDetail = useCallback(() => {
+    setIsProjectDetailViewOpen(!isProjectDetailViewOpen);
+  }, [isProjectDetailViewOpen]);
+
+  const handleCloseProjectDetail = useCallback(() => {
+    setIsProjectDetailViewOpen(false);
+  }, []);
+
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -127,6 +140,17 @@ export default function ProjectCarousel() {
     <section className="sticky top-0 h-screen w-full p-3">
       <div className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card">
         <div ref={containerRef} className="relative flex flex-1">
+          {/* Details view will show here on top of image as overlay */}
+
+          <AnimatePresence>
+            {isProjectDetailViewOpen && (
+              <ProjectDetailView
+                project={PROJECTS[currentIndex]}
+                onClose={handleCloseProjectDetail}
+              />
+            )}
+          </AnimatePresence>
+
           <AnimatePresence
             initial={false}
             custom={slideDirection}
@@ -165,6 +189,7 @@ export default function ProjectCarousel() {
           onPrevious={() => changeSlide(-1)}
           onNext={() => changeSlide(1)}
           isAnimating={isAnimating}
+          toggleProjectDetail={toggleProjectDetail}
         />
       </div>
 
@@ -226,7 +251,13 @@ function NavigationButton({ onClick, onMouseEnter, onMouseLeave }) {
   );
 }
 
-function ProjectInfo({ project, onPrevious, onNext, isAnimating }) {
+function ProjectInfo({
+  project,
+  onPrevious,
+  onNext,
+  isAnimating,
+  toggleProjectDetail,
+}) {
   return (
     <div className="flex items-center justify-start gap-5 border-t border-white/10 px-10 py-4">
       <div className="flex items-center gap-2.5">
@@ -242,7 +273,10 @@ function ProjectInfo({ project, onPrevious, onNext, isAnimating }) {
         />
       </div>
       <p className="flex-1">{project.title}</p>
-      <button className="w-fit rounded-full bg-white/10 px-3 py-1 text-sm font-semibold uppercase tracking-wider text-white/90 transition duration-200 hover:bg-accent-600 hover:text-white">
+      <button
+        onClick={toggleProjectDetail}
+        className="w-fit rounded-full bg-white/10 px-3 py-1 text-sm font-semibold uppercase tracking-wider text-white/90 transition duration-200 hover:bg-accent-600 hover:text-white"
+      >
         Learn More
       </button>
     </div>
@@ -289,5 +323,18 @@ function CustomCursor({ cursorState, mousePosition, cursorIcon }) {
         </motion.div>
       )}
     </AnimatePresence>
+  );
+}
+
+function ProjectDetailView({ project, onClose }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="absolute inset-0 z-20 flex origin-bottom items-center justify-center bg-card/90 p-10 saturate-150 backdrop-blur-md"
+    >
+      <p>Project details</p>
+    </motion.div>
   );
 }
