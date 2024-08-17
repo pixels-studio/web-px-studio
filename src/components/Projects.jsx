@@ -136,11 +136,8 @@ export default function Projects() {
 
   return (
     <section className="sticky top-0 h-screen w-full p-2">
-      <div
-        ref={containerRef}
-        className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card"
-      >
-        <div className="relative flex flex-1">
+      <div className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card">
+        <div ref={containerRef} className="relative flex flex-1">
           <AnimatePresence
             initial={false}
             custom={direction}
