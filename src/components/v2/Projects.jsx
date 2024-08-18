@@ -11,7 +11,7 @@ const SLIDE_VARIANTS = {
   exit: () => ({ opacity: 0 }),
 };
 
-export default function Projects({ currentIndex, changeSlide }) {
+export default function Projects({ currentIndex, changeSlide, openProject }) {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleSlideChange = useCallback(
@@ -68,7 +68,9 @@ export default function Projects({ currentIndex, changeSlide }) {
               duration: 0.25,
               ease: [0.26, 0.08, 0.25, 1],
             }}
-            className="relative aspect-[2/1] w-full overflow-hidden rounded bg-gray-50"
+            layout
+            layoutId={PROJECTS[currentIndex].title}
+            className="relative aspect-[2/1] w-full overflow-hidden rounded bg-black"
           >
             <Image
               src={PROJECTS[currentIndex].image}
@@ -82,11 +84,14 @@ export default function Projects({ currentIndex, changeSlide }) {
 
         <div className="flex items-end justify-between">
           <div className="flex-1 text-sm font-semibold uppercase tracking-wide">
-            <p>{PROJECTS[currentIndex].title}</p>
+            <motion.p>{PROJECTS[currentIndex].title}</motion.p>
             <p className="text-black/50">{PROJECTS[currentIndex].subtitle}</p>
           </div>
 
-          <button className="bg-accent relative z-20 rounded-full px-3 py-1.5 text-sm font-bold uppercase tracking-wide text-white transition-all duration-200">
+          <button
+            onClick={() => openProject(PROJECTS[currentIndex])}
+            className="bg-accent relative z-20 rounded-full px-3 py-1.5 text-sm font-bold uppercase tracking-wide text-white transition-all duration-200"
+          >
             View Case Study
           </button>
         </div>
