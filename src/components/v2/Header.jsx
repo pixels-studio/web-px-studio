@@ -28,10 +28,10 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-10">
-          <button className="text-sm font-semibold uppercase tracking-wide text-black/50">
+          <button className="text-sm font-semibold uppercase tracking-wide text-black/50 transition-all duration-200 hover:text-black active:scale-95">
             About
           </button>
-          <button className="text-sm font-semibold uppercase tracking-wide text-black/50">
+          <button className="text-sm font-semibold uppercase tracking-wide text-black/50 transition-all duration-200 hover:text-black active:scale-95">
             hey@pixels.studio
           </button>
         </div>

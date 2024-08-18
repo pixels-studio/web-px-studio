@@ -1,102 +1,35 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import ProjectTeaser1 from "@/assets/projects/project-teaser-1.png";
-import ProjectTeaser2 from "@/assets/projects/project-teaser-2.png";
-import ProjectTeaser3 from "@/assets/projects/project-teaser-3.png";
-import ProjectTeaser4 from "@/assets/projects/project-teaser-4.png";
-import ProjectTeaser5 from "@/assets/projects/project-teaser-5.png";
-import ProjectTeaser6 from "@/assets/projects/project-teaser-6.png";
-import ProjectTeaser7 from "@/assets/projects/project-teaser-7.png";
-import ProjectTeaser8 from "@/assets/projects/project-teaser-8.png";
-import ProjectTeaser9 from "@/assets/projects/project-teaser-9.png";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-
-const PROJECTS = [
-  {
-    image: ProjectTeaser1,
-    title: "Unsplash Desktop App",
-    subtitle: "Native MacOS Client for Unsplash",
-  },
-
-  {
-    image: ProjectTeaser2,
-    title: "Unsplash Figma Plugin",
-    subtitle: "Figma Extension for designers",
-  },
-  {
-    image: ProjectTeaser3,
-    title: "Unsplash for iOS",
-    subtitle: "Redesigned for intuitive mobile experience and visual impact.",
-  },
-  {
-    image: ProjectTeaser4,
-    title: "Interview Screen",
-    subtitle: "AI Powered Candidate screening",
-  },
-  {
-    image: ProjectTeaser5,
-    title: "Interview Screen",
-    subtitle: "AI Powered Candidate screening",
-  },
-  {
-    image: ProjectTeaser6,
-    title: "Interview Screen",
-    subtitle: "AI Powered Candidate screening",
-  },
-  {
-    image: ProjectTeaser7,
-    title: "Interview Screen",
-    subtitle: "AI Powered Candidate screening",
-  },
-  {
-    image: ProjectTeaser8,
-    title: "Interview Screen",
-    subtitle: "AI Powered Candidate screening",
-  },
-  {
-    image: ProjectTeaser9,
-    title: "Interview Screen",
-    subtitle: "AI Powered Candidate screening",
-  },
-];
+import { PROJECTS } from "@/utility/constants";
 
 const SLIDE_VARIANTS = {
-  enter: () => ({
-    opacity: 0,
-  }),
-  center: {
-    opacity: 1,
-  },
-  exit: () => ({
-    opacity: 0,
-  }),
+  enter: () => ({ opacity: 0 }),
+  center: { opacity: 1 },
+  exit: () => ({ opacity: 0 }),
 };
 
-export default function Projects() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function Projects({ currentIndex, changeSlide }) {
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const changeSlide = useCallback(
+  const handleSlideChange = useCallback(
     (direction) => {
       if (!isAnimating) {
         setIsAnimating(true);
-        setCurrentIndex(
-          (prevIndex) =>
-            (prevIndex + direction + PROJECTS.length) % PROJECTS.length,
-        );
+        changeSlide(direction);
       }
     },
-    [isAnimating],
+    [isAnimating, changeSlide],
   );
 
   const handleKeyDown = useCallback(
     (event) => {
-      if (event.key === "ArrowLeft") changeSlide(-1);
-      else if (event.key === "ArrowRight") changeSlide(1);
+      if (event.key === "ArrowLeft") handleSlideChange(-1);
+      else if (event.key === "ArrowRight") handleSlideChange(1);
     },
-    [changeSlide],
+    [handleSlideChange],
   );
 
   useEffect(() => {
@@ -108,13 +41,15 @@ export default function Projects() {
     <section className="relative flex flex-1 items-center justify-center px-10 py-10">
       <div className="absolute inset-0 z-10 grid grid-cols-2">
         <button
-          onClick={() => changeSlide(-1)}
+          onClick={() => handleSlideChange(-1)}
           className="h-full w-full cursor-w-resize bg-transparent outline-none"
-        ></button>
+          aria-label="Previous project"
+        />
         <button
-          onClick={() => changeSlide(1)}
+          onClick={() => handleSlideChange(1)}
           className="h-full w-full cursor-e-resize bg-transparent outline-none"
-        ></button>
+          aria-label="Next project"
+        />
       </div>
 
       <div className="mx-auto flex w-full max-w-[1000px] flex-col gap-5">
