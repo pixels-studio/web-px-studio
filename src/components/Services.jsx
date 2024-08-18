@@ -64,7 +64,7 @@ export default function Services() {
     >
       <motion.h2
         variants={itemVariants}
-        className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/70"
+        className="mb-3 text-sm font-semibold uppercase tracking-wide text-white/70"
       >
         What I do
       </motion.h2>

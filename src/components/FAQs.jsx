@@ -32,7 +32,7 @@ export default function FAQs() {
 
   return (
     <section>
-      <h2 className="mb-5 text-sm font-semibold uppercase tracking-wider text-white/70">
+      <h2 className="mb-5 text-sm font-semibold uppercase tracking-wide text-white/70">
         Commonly Asked Questions
       </h2>
 

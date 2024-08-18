@@ -57,7 +57,7 @@ export default function Lead() {
 
       <motion.a
         variants={itemVariants}
-        className="border-accent text-accent hover:bg-accent w-fit rounded-full border-2 bg-transparent px-4 py-1.5 text-sm font-semibold uppercase tracking-wider hover:text-black"
+        className="border-accent text-accent hover:bg-accent w-fit rounded-full border-2 bg-transparent px-4 py-1.5 text-sm font-semibold uppercase tracking-wide hover:text-black"
         href="mailto:abhi@pixels.studio"
       >
         Let's Work Together

@@ -65,7 +65,7 @@ export default function Contact() {
 
   return (
     <section>
-      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/70">
+      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white/70">
         Let's Collaborate
       </h2>
       <p className="mb-10 text-lg">
@@ -79,7 +79,7 @@ export default function Contact() {
         </a>
       </p>
 
-      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/70">
+      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white/70">
         Elsewhere
       </h2>
 

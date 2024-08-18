@@ -5,7 +5,7 @@ import ProfilePhoto from "@/assets/me.png";
 export default function Bio() {
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-sm font-semibold uppercase tracking-wider text-white/70">
+      <h2 className="text-sm font-semibold uppercase tracking-wide text-white/70">
         Life Beyond Pixels
       </h2>
 

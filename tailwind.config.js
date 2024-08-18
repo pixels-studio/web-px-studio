@@ -9,16 +9,16 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    fontFamily: {
-      sans: ["ff-dax-pro", "sans-serif"],
-    },
+    // fontFamily: {
+    //   sans: ["ff-dax-pro", "sans-serif"],
+    // },
     colors: {
       transparent: "transparent",
       current: "currentColor",
       black: colors.black,
-      white: "#dddddd",
+      white: colors.white,
       gray: colors.neutral,
-      accent: "#BFD834",
+      accent: "#FF501C",
       card: "#0D0D0D",
     },
     extend: {

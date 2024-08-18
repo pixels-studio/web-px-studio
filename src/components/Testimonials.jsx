@@ -67,7 +67,7 @@ export default function Testimonials() {
 
   return (
     <section>
-      <h2 className="text-sm font-semibold uppercase tracking-wider text-white/70">
+      <h2 className="text-sm font-semibold uppercase tracking-wide text-white/70">
         What they say
       </h2>
 
