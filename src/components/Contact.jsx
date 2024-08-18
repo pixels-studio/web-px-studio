@@ -71,7 +71,10 @@ export default function Contact() {
       <p className="mb-10 text-lg">
         I’m seeking full-time or freelance opportunities. If my work resonates
         with you, let’s bring your ideas to life. Reach out to me at{" "}
-        <a className="text-accent-600" href="mailto:abhi@pixels.studio">
+        <a
+          className="text-accent inline-flex overflow-hidden"
+          href="mailto:abhi@pixels.studio"
+        >
           abhi@pixels.studio
         </a>
       </p>

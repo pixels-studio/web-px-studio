@@ -18,8 +18,8 @@ module.exports = {
       black: colors.black,
       white: "#dddddd",
       gray: colors.neutral,
-      accent: colors.amber,
-      card: "#121212",
+      accent: "#BFD834",
+      card: "#0D0D0D",
     },
     extend: {
       backgroundImage: {

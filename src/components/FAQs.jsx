@@ -36,11 +36,7 @@ export default function FAQs() {
         Commonly Asked Questions
       </h2>
 
-      <Accordion.Root
-        className="grid grid-cols-1 gap-3"
-        defaultValue={`faq-1`}
-        collapsible
-      >
+      <Accordion.Root className="grid grid-cols-1 gap-3" collapsible>
         {FAQS.map((faq) => {
           return (
             <Accordion.Item
@@ -50,7 +46,7 @@ export default function FAQs() {
             >
               <Accordion.Trigger className="group flex w-full items-center justify-start gap-2 outline-none">
                 <p className="flex-1 text-left">{faq.question}</p>
-                <div className="grid h-6 w-6 transform place-items-center text-accent-600 transition-all duration-200 group-data-[state=open]:rotate-45">
+                <div className="text-accent grid h-6 w-6 transform place-items-center transition-all duration-200 group-data-[state=open]:rotate-45">
                   <PlusIcon />
                 </div>
               </Accordion.Trigger>

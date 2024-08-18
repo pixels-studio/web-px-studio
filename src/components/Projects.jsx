@@ -4,12 +4,14 @@ import Image from "next/image";
 import React, { useEffect, useState, useCallback } from "react";
 import ProjectTeaser1 from "@/assets/projects/circle-interview.png";
 import ProjectTeaser2 from "@/assets/projects/circle-origon-ui.png";
+import ProjectTeaser3 from "@/assets/projects/tribe-app-screens-1.png";
 import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "./Icons";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PROJECTS = [
   { image: ProjectTeaser1, title: "Circle — Interview Platform" },
   { image: ProjectTeaser2, title: "Circle — Origon Chat Interface" },
+  { image: ProjectTeaser3, title: "Tribe — iOS App" },
 ];
 
 const SLIDE_VARIANTS = {
@@ -72,8 +74,14 @@ export default function ProjectCarousel() {
   }, [handleKeyDown]);
 
   return (
-    <section className="sticky top-0 h-screen w-full p-3">
-      <div className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card">
+    <section className="sticky top-0 h-screen w-full p-2">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3, ease: [0.26, 0.08, 0.25, 1], delay: 0.4 }}
+        className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card"
+      >
         <div className="relative flex flex-1">
           <AnimatePresence>
             {isProjectDetailViewOpen && (
@@ -105,6 +113,7 @@ export default function ProjectCarousel() {
               <Image
                 src={PROJECTS[currentIndex].image}
                 alt={PROJECTS[currentIndex].title}
+                className="h-full w-full object-contain"
               />
             </motion.div>
           </AnimatePresence>
@@ -117,7 +126,7 @@ export default function ProjectCarousel() {
           isAnimating={isAnimating}
           toggleProjectDetail={toggleProjectDetail}
         />
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -137,9 +146,9 @@ function ProjectInfo({ project, onPrevious, onNext, isAnimating }) {
           disabled={isAnimating}
         />
 
-        <div className="h-5 w-px bg-white/10" />
+        <div className="h-5 w-px bg-white/20" />
 
-        <button className="grid h-7 w-7 place-items-center rounded-full bg-white/10 outline-none transition-all duration-200 hover:bg-accent-600 hover:text-black">
+        <button className="hover:bg-accent grid h-7 w-7 place-items-center rounded-full bg-white/10 text-white outline-none transition-all duration-200 hover:text-black">
           <PlusIcon />
         </button>
       </div>

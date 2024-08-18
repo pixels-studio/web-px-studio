@@ -13,7 +13,7 @@ export default function Testimonials() {
         <>
           I had a memorable time working with Abhi; his grasp on UI and UX
           design theory was evident.{" "}
-          <span className="rounded bg-accent-500/20 px-0.5 text-lg/6 text-accent-100">
+          <span className="bg-accent/20 text-accent rounded px-0.5 text-lg/6">
             He was a notable asset
           </span>{" "}
           to the tlkn app with relentless motivation towards creating a perfect
@@ -31,7 +31,7 @@ export default function Testimonials() {
       quote: (
         <>
           Abhishek's skill in interface design is truly notable. He has a{" "}
-          <span className="rounded bg-accent-500/20 px-0.5 text-lg/6 text-accent-100">
+          <span className="bg-accent/20 text-accent rounded px-0.5 text-lg/6">
             great ability to grasp our ideas
           </span>{" "}
           and change them into fantastic designs. The way he turns thoughts into
@@ -49,7 +49,7 @@ export default function Testimonials() {
       quote: (
         <>
           Abhishek is a{" "}
-          <span className="rounded bg-accent-500/20 px-0.5 text-lg/6 text-accent-100">
+          <span className="bg-accent/20 text-accent rounded px-0.5 text-lg/6">
             versatile designer
           </span>{" "}
           skilled in solving open-ended problems. His attention to detail,

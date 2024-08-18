@@ -1,44 +1,88 @@
+"use client";
+
 import React from "react";
+import { delay, motion } from "framer-motion";
 
 export default function Services() {
   const SERVICES = [
     {
       id: 1,
       label: "Web Design",
-      accentClass: "bg-accent-300 text-black",
+      accentClass: "bg-[#BFD834] text-black",
     },
     {
       id: 2,
       label: "App Design",
-      accentClass: "bg-accent-500 text-black",
+      accentClass: "bg-[#3C9719]",
     },
     {
       id: 3,
       label: "Design System",
-      accentClass: "bg-accent-700",
+      accentClass: "bg-[#BFD834] text-black",
     },
     {
       id: 4,
       label: "Web Development",
-      accentClass: "bg-accent-900",
+      accentClass: "bg-[#3C9719]",
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 0.4,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      filter: "blur(10px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        type: "spring",
+        damping: 15,
+        stiffness: 100,
+      },
+    },
+  };
+
   return (
-    <section>
-      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/70">
+    <motion.section
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.h2
+        variants={itemVariants}
+        className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/70"
+      >
         What I do
-      </h2>
-      <p className="mb-5 text-lg">
+      </motion.h2>
+      <motion.p variants={itemVariants} className="mb-5 text-lg">
         I design and build user-friendly, visually appealing digital products.
         My work covers all aspects of creating cohesive and functional
         experiences.
-      </p>
+      </motion.p>
 
-      <ul className="grid grid-cols-1 gap-3" role="list">
+      <motion.ul
+        className="grid grid-cols-1 gap-3"
+        role="list"
+        variants={containerVariants}
+      >
         {SERVICES.map((service) => {
           return (
-            <li
+            <motion.li
+              variants={itemVariants}
               className="text-md flex items-center gap-3 rounded-lg bg-card p-3"
               key={service.id}
             >
@@ -48,10 +92,10 @@ export default function Services() {
                 {service.id}
               </div>
               <p>{service.label}</p>
-            </li>
+            </motion.li>
           );
         })}
-      </ul>
-    </section>
+      </motion.ul>
+    </motion.section>
   );
 }
