@@ -9,9 +9,9 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    // fontFamily: {
-    //   sans: ["ff-dax-pro", "sans-serif"],
-    // },
+    fontFamily: {
+      sans: ["Inter", "sans-serif"],
+    },
     colors: {
       transparent: "transparent",
       current: "currentColor",
