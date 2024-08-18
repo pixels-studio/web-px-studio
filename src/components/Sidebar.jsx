@@ -6,7 +6,6 @@ import Bio from "./Bio";
 import FAQs from "./FAQs";
 import Contact from "./Contact";
 import Footer from "./Footer";
-import { StarsIcon } from "./Icons";
 
 export default function Sidebar() {
   return (
