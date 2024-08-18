@@ -13,8 +13,6 @@ import ProjectTeaser9 from "@/assets/projects/project-teaser-9.png";
 import Image from "next/image";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   const PROJECTS = [
     ProjectTeaser1,
     ProjectTeaser2,
@@ -28,18 +26,22 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mt-auto overflow-x-auto bg-gray-100 p-5">
-      <div className="mx-auto flex h-full items-center justify-between gap-5">
-        {PROJECTS.map((project) => {
-          return (
+    <footer className="no-scrollbar mt-auto flex items-center gap-5 overflow-x-scroll bg-gray-100 p-5">
+      {PROJECTS.map((project, index) => {
+        return (
+          <div
+            className="relative aspect-[2/1] w-40 shrink-0 overflow-hidden rounded bg-black"
+            key={index}
+          >
             <Image
-              className="aspect-[2/1] w-40 rounded object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
               src={project}
-              alt="Project "
+              alt="Project"
+              placeholder="blur"
             />
-          );
-        })}
-      </div>
+          </div>
+        );
+      })}
     </footer>
   );
 }

@@ -9,32 +9,13 @@
     text-wrap: balance;
   }
 
-  .gradient-text {
-    background: linear-gradient(
-      92deg,
-      #003c91 -25.04%,
-      #059dff -12.93%,
-      #14b3f4 1.4%,
-      #7c5ef6 40.83%,
-      #e33fa1 65.62%,
-      #fb5343 78.7%,
-      #fd7b42 96.86%
-    );
-
-    color: transparent;
-    background-clip: text;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
-
-  .rainbow {
-    background: linear-gradient(
-      92deg,
-      #003c91 -25.04%,
-      #059dff -12.93%,
-      #14b3f4 1.4%,
-      #7c5ef6 40.83%,
-      #e33fa1 65.62%,
-      #fb5343 78.7%,
-      #fd7b42 96.86%
-    );
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
