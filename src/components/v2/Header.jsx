@@ -8,9 +8,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import Bio from "./Bio";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function Header() {
-  const [showBio, setShowBio] = useState(false);
-
+export default function Header({ showBio, toggleBioModal }) {
   return (
     <header className="sticky top-0 bg-white p-5">
       <div className="absolute">
@@ -35,7 +33,7 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-10">
-          <Dialog.Root open={showBio} onOpenChange={setShowBio}>
+          <Dialog.Root open={showBio} onOpenChange={toggleBioModal}>
             <Dialog.Trigger asChild>
               <button className="text-sm font-semibold uppercase tracking-wide text-black/50 outline-none transition-all duration-200 hover:text-black active:scale-95">
                 About
