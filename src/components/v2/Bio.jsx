@@ -66,7 +66,7 @@ const SOCIALS = [
 
 export default function Bio() {
   return (
-    <section className="mx-auto flex w-full max-w-[640px] flex-col gap-10 pb-10 text-2xl/9">
+    <section className="mx-auto flex w-full max-w-[640px] flex-col gap-10 pb-10 text-2xl/10">
       <Image
         src={CoverImage}
         quality={100}

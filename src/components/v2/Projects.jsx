@@ -84,7 +84,7 @@ export default function Projects({ currentIndex, changeSlide, openProject }) {
 
         <div className="flex items-end justify-between">
           <div className="flex-1 text-sm font-semibold uppercase tracking-wide">
-            <motion.p>{PROJECTS[currentIndex].title}</motion.p>
+            <p>{PROJECTS[currentIndex].title}</p>
             <p className="text-black/50">{PROJECTS[currentIndex].subtitle}</p>
           </div>
 
