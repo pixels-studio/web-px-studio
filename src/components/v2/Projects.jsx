@@ -1,15 +1,9 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
-import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { PROJECTS } from "@/utility/constants";
-
-const SLIDE_VARIANTS = {
-  enter: () => ({ opacity: 0 }),
-  center: { opacity: 1 },
-  exit: () => ({ opacity: 0 }),
-};
+import PixelatedImage from "./PixelatedImage";
 
 export default function Projects({ currentIndex, changeSlide, openProject }) {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -60,24 +54,14 @@ export default function Projects({ currentIndex, changeSlide, openProject }) {
         >
           <motion.div
             key={currentIndex}
-            variants={SLIDE_VARIANTS}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              duration: 0.25,
-              ease: [0.26, 0.08, 0.25, 1],
-            }}
             layout
             layoutId={PROJECTS[currentIndex].title}
             className="relative aspect-[2/1] w-full overflow-hidden rounded bg-black"
           >
-            <Image
+            <PixelatedImage
               src={PROJECTS[currentIndex].image}
               alt={PROJECTS[currentIndex].title}
-              placeholder="blur"
-              className="absolute inset-0 h-full w-full object-cover"
-              quality={100}
+              onAnimationComplete={() => setIsAnimating(false)}
             />
           </motion.div>
         </AnimatePresence>
@@ -90,7 +74,7 @@ export default function Projects({ currentIndex, changeSlide, openProject }) {
 
           <button
             onClick={() => openProject(PROJECTS[currentIndex])}
-            className="bg-accent relative z-20 rounded-full px-3 py-1.5 text-sm font-bold uppercase tracking-wide text-white transition-all duration-200"
+            className="relative z-20 rounded-full bg-accent px-3 py-1.5 text-sm font-bold uppercase tracking-wide text-white transition-all duration-200"
           >
             View Case Study
           </button>
