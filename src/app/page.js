@@ -33,7 +33,11 @@ export default function Home() {
           />
         ) : (
           <motion.main className="flex h-screen w-full flex-col">
-            <Header showBio={showBio} toggleBioModal={setShowBio} />
+            <Header
+              showBio={showBio}
+              isCaseStudyOpened={activeProject !== null}
+              toggleBioModal={setShowBio}
+            />
             <Projects
               openProject={setActiveProject}
               currentIndex={currentIndex}

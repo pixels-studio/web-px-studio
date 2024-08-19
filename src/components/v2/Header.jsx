@@ -8,9 +8,23 @@ import * as Dialog from "@radix-ui/react-dialog";
 import Bio from "./Bio";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function Header({ showBio, toggleBioModal }) {
+export default function Header({ showBio, toggleBioModal, isCaseStudyOpened }) {
   return (
-    <header className="sticky top-0 bg-white p-5">
+    <motion.header
+      initial={{
+        y: isCaseStudyOpened ? "100%" : "0%",
+        opacity: isCaseStudyOpened ? 0 : 1,
+      }}
+      animate={{
+        y: isCaseStudyOpened ? "100%" : "0%",
+        opacity: isCaseStudyOpened ? 0 : 1,
+      }}
+      transition={{
+        duration: 0.4,
+        ease: [0.26, 0.08, 0.25, 1],
+      }}
+      className="sticky top-0 bg-white p-5"
+    >
       <div className="absolute">
         <Logo />
       </div>
@@ -78,6 +92,6 @@ export default function Header({ showBio, toggleBioModal }) {
           </button>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }
