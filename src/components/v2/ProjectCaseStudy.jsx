@@ -28,7 +28,7 @@ export default function ProjectCaseStudy({ project, onClose }) {
 
   return (
     <section>
-      <div className="mx-auto w-full max-w-[1000px]">
+      <div className="mx-auto w-full max-w-[1024px]">
         <motion.div
           layoutId={project.title}
           className="relative mb-20 aspect-[2/1] w-full bg-black"

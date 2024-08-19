@@ -95,7 +95,7 @@ export default function Projects({ currentIndex, changeSlide, openProject }) {
         </CustomCursorButton>
       </div>
 
-      <div className="relative z-20 mx-auto flex w-full max-w-[1000px] flex-col gap-5">
+      <div className="relative z-20 mx-auto flex w-full max-w-[960px] flex-col gap-5">
         <AnimatePresence
           initial={false}
           mode="wait"

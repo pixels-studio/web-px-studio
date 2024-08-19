@@ -6,8 +6,8 @@ import Header from "@/components/v2/Header";
 import Projects from "@/components/v2/Projects";
 import { PROJECTS } from "@/utility/constants";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import ProjectCaseStudy from "@/components/v2/ProjectCaseStudy";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +25,12 @@ export default function Home() {
 
   return (
     <div className={inter.className}>
+      <Head>
+        {PROJECTS.map((project, index) => (
+          <link key={index} rel="preload" href={project.image} as="image" />
+        ))}
+      </Head>
+
       <AnimatePresence mode="wait">
         {activeProject ? (
           <ProjectCaseStudy

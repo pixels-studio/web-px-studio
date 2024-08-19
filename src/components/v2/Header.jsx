@@ -25,7 +25,7 @@ export default function Header({ showBio, toggleBioModal, isCaseStudyOpened }) {
       <div className="absolute">
         <Logo />
       </div>
-      <div className="mx-auto flex w-full max-w-[1000px] items-end justify-between">
+      <div className="mx-auto flex w-full max-w-[960px] items-end justify-between">
         <div className="flex items-center gap-3">
           <Image
             className="aspect-square w-10 rounded"

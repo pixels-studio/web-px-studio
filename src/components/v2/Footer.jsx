@@ -25,6 +25,9 @@ export default function Footer({ currentIndex, setCurrentIndex }) {
             src={project.image}
             alt={project.title}
             placeholder="blur"
+            loading="eager"
+            priority={index < 9}
+            sizes="(max-width: 640px) 100vw, 33vw"
           />
         </motion.button>
       ))}
