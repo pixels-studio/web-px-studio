@@ -400,6 +400,130 @@ export const DribbbleIcon = () => {
   );
 };
 
+export const CursorRightIcon = () => {
+  return (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_d_1040_502)">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M29.2188 15.9988L18.9426 26.2749L17.057 24.3893L24.1142 17.3321H4.66647V14.6654L24.1142 14.6654L17.057 7.60828L18.9426 5.72266L29.2188 15.9988Z"
+          fill="black"
+        />
+        <path
+          d="M29.5723 16.3523L29.9259 15.9988L29.5723 15.6452L19.2962 5.3691L18.9426 5.01555L18.5891 5.3691L16.7034 7.25472L16.3499 7.60828L16.7034 7.96183L22.9071 14.1654L4.66647 14.1654H4.16647V14.6654V17.3321V17.8321H4.66647H22.9071L16.7034 24.0358L16.3499 24.3893L16.7034 24.7429L18.5891 26.6285L18.9426 26.982L19.2962 26.6285L29.5723 16.3523Z"
+          stroke="white"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_1040_502"
+          x="2.33268"
+          y="2.97526"
+          width="29.6335"
+          height="26.0456"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset />
+          <feGaussianBlur stdDeviation="0.666667" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_1040_502"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_1040_502"
+            result="shape"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+};
+
+export const CursorLeftIcon = () => {
+  return (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_d_1040_504)">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M4.66602 15.9988L14.9422 26.2749L16.8278 24.3893L9.77058 17.3321H29.2183V14.6654L9.77059 14.6654L16.8278 7.60828L14.9422 5.72266L4.66602 15.9988Z"
+          fill="black"
+        />
+        <path
+          d="M4.31246 16.3523L3.95891 15.9988L4.31246 15.6452L14.5886 5.3691L14.9422 5.01555L15.2957 5.3691L17.1813 7.25472L17.5349 7.60828L17.1813 7.96183L10.9777 14.1654L29.2183 14.1654H29.7183V14.6654V17.3321V17.8321H29.2183H10.9777L17.1813 24.0358L17.5349 24.3893L17.1813 24.7429L15.2957 26.6285L14.9422 26.982L14.5886 26.6285L4.31246 16.3523Z"
+          stroke="white"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_1040_504"
+          x="1.91862"
+          y="2.97526"
+          width="29.6335"
+          height="26.0456"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset />
+          <feGaussianBlur stdDeviation="0.666667" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_1040_504"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_1040_504"
+            result="shape"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+};
+
 export const FigmaIcon = () => {
   return (
     <svg
