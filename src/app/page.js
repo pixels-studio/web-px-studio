@@ -25,14 +25,22 @@ export default function Home() {
 
   return (
     <div className={inter.className}>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {activeProject ? (
           <ProjectCaseStudy
             project={activeProject}
             onClose={() => setActiveProject(null)}
           />
         ) : (
-          <motion.main className="flex h-screen w-full flex-col">
+          <motion.main
+            initial={{ scale: 1 }}
+            animate={{ scale: showBio ? 0.96 : 1 }}
+            transition={{
+              duration: 0.4,
+              ease: [0.26, 0.08, 0.25, 1],
+            }}
+            className="flex h-screen w-full flex-col"
+          >
             <Header
               showBio={showBio}
               isCaseStudyOpened={activeProject !== null}

@@ -11,12 +11,9 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function Header({ showBio, toggleBioModal, isCaseStudyOpened }) {
   return (
     <motion.header
-      initial={{
-        y: isCaseStudyOpened ? "100%" : "0%",
-        opacity: isCaseStudyOpened ? 0 : 1,
-      }}
+      initial={{ y: 0, opacity: 1 }}
       animate={{
-        y: isCaseStudyOpened ? "100%" : "0%",
+        y: isCaseStudyOpened ? -100 : 0,
         opacity: isCaseStudyOpened ? 0 : 1,
       }}
       transition={{
@@ -58,17 +55,25 @@ export default function Header({ showBio, toggleBioModal, isCaseStudyOpened }) {
               <AnimatePresence>
                 {showBio && (
                   <>
-                    <Dialog.Overlay className="fixed inset-0 z-30 bg-white" />
+                    <Dialog.Overlay asChild>
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 z-30 bg-black/60"
+                      />
+                    </Dialog.Overlay>
                     <Dialog.Content asChild>
                       <motion.section
-                        initial={{ opacity: 0, scale: 1.05 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.05 }}
+                        initial={{ y: "100%" }}
+                        animate={{ y: 0 }}
+                        exit={{ y: "100%" }}
                         transition={{
                           duration: 0.4,
                           ease: [0.26, 0.08, 0.25, 1],
                         }}
-                        className="fixed inset-0 z-40 overflow-y-auto"
+                        className="fixed inset-0 z-40 overflow-y-auto bg-white"
                       >
                         <Dialog.Close className="fixed left-5 top-5 outline-none">
                           <Logo />

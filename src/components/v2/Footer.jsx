@@ -17,7 +17,7 @@ export default function Footer({ currentIndex, setCurrentIndex }) {
               : ""
           }`}
           whileTap={{ scale: 0.96 }}
-          whileHover={{ scale: 1.04 }}
+          whileHover={{ opacity: index === currentIndex ? 1 : 0.8 }}
           onClick={() => setCurrentIndex(index)}
         >
           <Image

@@ -11,7 +11,7 @@ import {
   SaveeIcon,
   TwitterIcon,
 } from "../Icons";
-import { Dialog } from "@radix-ui/react-dialog";
+import { motion } from "framer-motion";
 
 const SOCIALS = [
   {
@@ -66,14 +66,22 @@ const SOCIALS = [
 
 export default function Bio() {
   return (
-    <section className="mx-auto flex w-full max-w-[640px] flex-col gap-10 pb-10 text-2xl/10">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { delay: 0.2 } }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 0.2,
+      }}
+      className="mx-auto flex w-full max-w-[640px] flex-col gap-10 pb-10 text-2xl/10"
+    >
       <Image
         src={CoverImage}
         quality={100}
         placeholder="blur"
         alt="Profile photo of Abhishek Kambli"
       />
-      <h2 className="font-bold">
+      <h2 className="font-bold leading-tight">
         A designer and developer—helping people shape digital products and
         visual systems.
       </h2>
@@ -117,6 +125,6 @@ export default function Bio() {
       </ul>
 
       <p className="text-base text-black/50">© 2024 pixels studio</p>
-    </section>
+    </motion.section>
   );
 }
