@@ -105,7 +105,7 @@ export default function Projects({ currentIndex, changeSlide, openProject }) {
             key={currentIndex}
             layout
             layoutId={PROJECTS[currentIndex].title}
-            className="aspect-[2/1] w-full overflow-hidden rounded bg-black"
+            className="aspect-[2/1] w-full select-none overflow-hidden rounded bg-black"
           >
             <PixelatedImage
               src={PROJECTS[currentIndex].image}
