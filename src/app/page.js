@@ -1,13 +1,13 @@
 "use client";
 import { Inter } from "next/font/google";
 import { useState } from "react";
-import Footer from "@/components/v2/Footer";
 import Header from "@/components/v2/Header";
 import Projects from "@/components/v2/Projects";
 import { PROJECTS } from "@/utility/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import ProjectCaseStudy from "@/components/v2/ProjectCaseStudy";
 import Head from "next/head";
+import ProjectGalleryFooter from "@/components/v2/ProjectGalleryFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,9 +57,9 @@ export default function Home() {
               currentIndex={currentIndex}
               changeSlide={changeSlide}
             />
-            <Footer
-              currentIndex={currentIndex}
-              setCurrentIndex={setCurrentIndex}
+            <ProjectGalleryFooter
+              activeProjectIndex={currentIndex}
+              setActiveProjectIndex={setCurrentIndex}
             />
           </motion.main>
         )}
