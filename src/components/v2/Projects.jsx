@@ -121,14 +121,41 @@ export default function Projects({ currentIndex, changeSlide, openProject }) {
             <p className="text-black/50">{PROJECTS[currentIndex].subtitle}</p>
           </div>
 
-          <button
+          <ActionButton
+            label="View Case Study"
             onClick={() => openProject(PROJECTS[currentIndex])}
-            className="rounded-full bg-accent px-3 py-1.5 text-sm font-bold uppercase tracking-wide text-white transition-all duration-200"
-          >
-            View Case Study
-          </button>
+          />
         </div>
       </div>
     </section>
   );
 }
+
+const ActionButton = ({ label, onClick }) => {
+  return (
+    <motion.button
+      onClick={onClick}
+      className="relative flex items-center justify-center overflow-hidden rounded-full bg-accent px-3 py-1.5 text-sm font-bold uppercase tracking-wide text-white"
+      whileHover="hover"
+    >
+      <motion.span
+        initial={{ y: 0, position: "relative" }}
+        variants={{
+          hover: { y: "-150%", position: "absolute" },
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+      >
+        {label}
+      </motion.span>
+      <motion.span
+        initial={{ y: "150%", position: "absolute" }}
+        variants={{
+          hover: { y: 0, position: "relative" },
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+      >
+        {label}
+      </motion.span>
+    </motion.button>
+  );
+};

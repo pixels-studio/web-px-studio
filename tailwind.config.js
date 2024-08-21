@@ -18,7 +18,7 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.neutral,
-      accent: "#FF501C",
+      accent: "#3C9719",
       card: "#0D0D0D",
     },
     extend: {
